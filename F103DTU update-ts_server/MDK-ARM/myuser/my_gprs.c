@@ -992,38 +992,38 @@ void wdz_GPRS_string_to_array(uint8_t *my_string, uint8_t *txbuf)
 */
 extern uint8_t link_status_GPRS;
 extern uint8_t GPRS_Heartdata_error_count;  //判断心跳包失败的次数，如果到5次了，就标识GPRS网络故障，然后利用这个计数值进行M35的重启判断
-uint8_t WDZ_GPRS_101transmit_heartdata(void)
-{
-    uint8_t my_status = 0;
-    uint8_t my_rxbuf[7] = "\x10\x80\x01\x00\x81\x16";
-    uint8_t my_txbuf[7] = TX_GPRS_101_heartdata;
+//uint8_t WDZ_GPRS_101transmit_heartdata(void)
+//{
+//    uint8_t my_status = 0;
+//    uint8_t my_rxbuf[7] = "\x10\x80\x01\x00\x81\x16";
+//    uint8_t my_txbuf[7] = TX_GPRS_101_heartdata;
 
 
-    my_status = WDZ_GPRS_101transmint_commd_wait_commd(1, my_txbuf, 1, my_rxbuf);
+//    my_status = WDZ_GPRS_101transmint_commd_wait_commd(1, my_txbuf, 1, my_rxbuf);
 
-    if(my_status == 0)
-    {
-        USART_printf(&huart3, " Server heart-\r\n");
-        GPRS_Heartdata_error_count++;
-    }
-    else if(my_status == 1)
-    {
-        USART_printf(&huart3, " Server heart*\r\n");
-        GPRS_Heartdata_error_count = 0;
-    }
-    //网络连接状态判断，如果5次失败，就标识网络有问题，重新启动M35
-    if(GPRS_Heartdata_error_count >= 3)
-    {
-        GPRS_Status = 0;
-        NET_Server_status = 0;
-        //GPRS_Heartdata_error_count=0;
+//    if(my_status == 0)
+//    {
+//        USART_printf(&huart3, " Server heart-\r\n");
+//        GPRS_Heartdata_error_count++;
+//    }
+//    else if(my_status == 1)
+//    {
+//        USART_printf(&huart3, " Server heart*\r\n");
+//        GPRS_Heartdata_error_count = 0;
+//    }
+//    //网络连接状态判断，如果5次失败，就标识网络有问题，重新启动M35
+//    if(GPRS_Heartdata_error_count >= 3)
+//    {
+//        GPRS_Status = 0;
+//        NET_Server_status = 0;
+//        //GPRS_Heartdata_error_count=0;
 
-        link_status_GPRS = 0; //GPRS网络如果断开了，则认为101链路断了
-    }
+//        link_status_GPRS = 0; //GPRS网络如果断开了，则认为101链路断了
+//    }
 
-    return my_status;
+//    return my_status;
 
-}
+//}
 
 
 

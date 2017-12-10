@@ -34,6 +34,7 @@ extern uint8_t my_CC1101_chip_address;
 extern uint8_t my_gprs_TX_status;
 extern uint8_t my_system_restart_status;
 extern uint8_t USART1_my_frame[];
+extern uint8_t NET_Server_status;
 
 
 
@@ -970,6 +971,7 @@ void  my_fun_GPRS_TX_OK(void)
     }
     if(my_GPRS_all_step == 0XE500)
     {
+			 
         my_step = 0X00E5;
         xQueueSend(myQueue02Handle, &my_step, 100);
     }
@@ -2273,6 +2275,7 @@ uint8_t my_fun_GPRS_RX_test1(void) //此函数为结束函数，收到OK帧后，结束对话过程
     if(my_GPRS_all_step == 0X00E4)
     {
         printf("GPRS==TCP==start time is over!!\r\n");
+			   NET_Server_status = 1;
     }
     //计数值同步指令
     else if(my_GPRS_all_step == 0X00E5)
@@ -2701,6 +2704,7 @@ void my_fun_M35_resume_init(void)
 
     if( GPRS_Heartdata_error_count >= 3) //M35发送数据不成功3次以上
     {
+			  printf("\n==my GPRS_Heartdata_error_count=%d====\n",GPRS_Heartdata_error_count);
         BaseType_t xResult;
         BaseType_t xHigherPriorityTaskWoken = pdFAIL;
         xResult =	xEventGroupSetBitsFromISR(xCreatedEventGroup, 0X10, &xHigherPriorityTaskWoken);

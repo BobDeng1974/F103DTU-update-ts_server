@@ -87,7 +87,7 @@ void my_gprs_generate_101Alarm_Time_history_data(uint8_t temp,uint8_t *my_buf,ui
 void WDZ_GPRS_101Transmit_OKdata(void); //发送肯定确认
 
 uint8_t WDZ_GPRS_101Transmit_Link_data(void);//发送建立链路数据
-uint8_t WDZ_GPRS_101transmit_heartdata(void);  //发送心跳数据
+//uint8_t WDZ_GPRS_101transmit_heartdata(void);  //发送心跳数据
 uint8_t WDZ_GPRS_101transmit_Cycle_data(void);  //发送周期数据
 uint8_t WDZ_GPRS_101Transmit_Alarm_Data(void);//主动发送报警数据
 

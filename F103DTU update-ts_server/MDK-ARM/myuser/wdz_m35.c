@@ -268,11 +268,13 @@ void my_init_m35()
     //如果软启动失败，开启硬件启动，和15分钟定时器
     if(my_gprs_status==0)
     {
+			 GPRS_Heartdata_error_count++; //记录断开
         LED1_ON; //上数，第一个红色灯,表示GPRS有问题
         GPRS_Status=0;
         NET_Server_status=0;
         // Delay_us(200);
         //开启15分钟定时，15分钟后再次进行初始化
+			  
         my_speaker_long_voice(200);
     }
     else

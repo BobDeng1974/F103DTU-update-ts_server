@@ -353,7 +353,7 @@ int main(void)
         //CC1101SetTRMode(RX_MODE);           // 进入接收模式
         //printf("main CC1101 status=[%XH] \n",CC1101ReadStatus(CC1101_MARCSTATE));
 
-        LED1_TOGGLE;
+        
 
         ii=my_at_senddata(my_usart1_tx_buf1);
         if(ii==1) printf("gprs is ok!=%d\n",my_usart1_tx_buf1[1]);
