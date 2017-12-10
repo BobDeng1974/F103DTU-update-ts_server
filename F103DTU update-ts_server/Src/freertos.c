@@ -719,7 +719,7 @@ void StartTask04(void const * argument)
         //====DTU==GPRS 主动发送 周期数据1--双字节
         my_fun_gprs_time_dialog_tx(my_step, 0X0000, 0xB100, 0, my_fun_GPRS_TX_CYC1); // 握手
         my_fun_gprs_time_dialog_tx(my_step, 0X00B1, 0xB200, 0, my_fun_GPRS_TX_CYC2); //遥信
-        my_fun_gprs_time_dialog_tx(my_step, 0X00B2, 0xB300, 0, my_fun_GPRS_TX_CYC3); //遥测
+        my_fun_gprs_time_dialog_tx(my_step, 0X00B2, 0xB300, 0, my_fun_GPRS_TX_CYC3); //遥测4个量
         my_fun_gprs_time_dialog_tx(my_step, 0X00B3, 0xB400, 0, my_fun_GPRS_TX_CYC4); //环境
 
         my_fun_gprs_time_dialog_tx(my_step, 0X00B4, 0xB500, 0, my_fun_GPRS_TX_CYC5); //遥测补充
@@ -978,8 +978,8 @@ void StartTask07(void const * argument)
 				my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0xE000, 0x00E0, 0, my_fun_dialog_CC1101_RX_1);
 				//====CC1101 周期=====
         my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x0100, 0x0001, 0, my_fun_dialog_CC1101_RX_1);//遥信
-        my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x4000, 0x0040, 0, my_fun_dialog_CC1101_RX_1);//直流DC
-        my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x4100, 0x0041, 0, my_fun_dialog_CC1101_RX_1);//AC有效值
+        my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x4000, 0x0040, 0, my_fun_dialog_CC1101_RX_1);//遥测DC
+        my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x4100, 0x0041, 0, my_fun_dialog_CC1101_RX_1);//遥测AC
         my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x4200, 0x0042, 0, my_fun_dialog_CC1101_RX_1);	//AC12T
 				
 				my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x4300, 0x0043, 0,my_fun_dialog_CC1101_RX_1);//录波数据
@@ -1370,6 +1370,13 @@ void Callback01(void const * argument)
 
     }
     //====从CPU==END===
+		//显示当前数据的值
+		if(my_os_count1 % 69 == 0)
+		{
+			printf("==display my_os_count1=%d",my_os_count1);
+			my_fun_display_ZSQ_data();
+			
+		}
 
     LED2_TOGGLE; //led2翻转表示，OS系统活着，1秒1次，软定时器
     /* USER CODE END Callback01 */

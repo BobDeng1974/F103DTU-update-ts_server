@@ -24,7 +24,7 @@
 
 //GPRS test
 #define Use_GPRS_auto_re_ok  0 //GPRS模拟自动接收到OK帧，对话过程自动进行
-#define Use_indicatour_cyc_test_satus 1 //产生指示器的模拟数据
+#define Use_indicatour_cyc_test_satus 0 //产生指示器的模拟数据
 
 
 
@@ -39,7 +39,7 @@ struct indicator_class
     uint8_t AC12T_ALL_Current_data_buf[24];
     uint8_t AC12T_ALL_dianchang_data_buf[24];
     uint8_t AC12T_HALF_Current_data_buf[24];
-    uint8_t data_time_buf[7]; //RTC
+    uint8_t RTC_time_buf[7]; //RTC
     uint8_t data_type;  //01为周期，02为报警
     uint8_t count_time[2];  //全局同步值
     uint8_t xinhao_db; //信号强度

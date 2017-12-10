@@ -34,7 +34,7 @@ void HAL_TIM_PeriodElapsedCallback2(TIM_HandleTypeDef *htim)
     }
 
     //GPRS 周期发送
-		MY_ACT_CYC_DTU=913; //@@@@快速测试使用
+		MY_ACT_CYC_DTU=187; //@@@@快速测试使用
     if(my_tim6_count % MY_ACT_CYC_DTU == 0 && my_tim6_count != 0 && my_GPRS_all_step == 0 && my_gprs_TX_status == 0 && my_system_restart_status==0 )
     {
         my_gprs_TX_status = 1;
@@ -42,7 +42,7 @@ void HAL_TIM_PeriodElapsedCallback2(TIM_HandleTypeDef *htim)
         printf("====GPRS CYC time =%d\r\n", my_os_count1);
     }
     //GPRS主动发送数据，心跳服务器，发送到01号队列，对应04号任务
-		MY_ACT_Heart_DTU=763;//@@@快速测试
+		MY_ACT_Heart_DTU=61;//@@@快速测试
     if(my_tim6_count % (MY_ACT_Heart_DTU) == 0 && my_tim6_count != 0  && my_GPRS_all_step == 0 && my_gprs_TX_status == 0 && my_system_restart_status==0)
     {
         my_gprs_TX_status = 1;

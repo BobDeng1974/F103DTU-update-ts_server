@@ -131,3 +131,4 @@ uint8_t my_fun_GPRS_RX_Rec_data(void);
 void my_fun_GPRS_101_genert_record_data(uint8_t *txbu);
 uint8_t my_fun_dialog_CC1101_RX_heart(void);
 void my_fun_CC1101_TX_OK(void);
+void my_fun_display_ZSQ_data(void);

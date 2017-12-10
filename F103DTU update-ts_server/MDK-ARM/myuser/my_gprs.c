@@ -4728,13 +4728,13 @@ void my_gprs_generate_101yaoce1_COUNTSYN_data(uint8_t *my_rsbuf)
     my_rsbuf[14] = my_indicator_data[0].count_time[0];
     my_rsbuf[15] = my_indicator_data[0].count_time[1];
 
-    my_rsbuf[16] = my_indicator_data[0].data_time_buf[0];
-    my_rsbuf[17] = my_indicator_data[0].data_time_buf[1];
-    my_rsbuf[18] = my_indicator_data[0].data_time_buf[2];
-    my_rsbuf[19] = my_indicator_data[0].data_time_buf[3];
-    my_rsbuf[20] = my_indicator_data[0].data_time_buf[4];
-    my_rsbuf[21] = my_indicator_data[0].data_time_buf[5];
-    my_rsbuf[22] = my_indicator_data[0].data_time_buf[6];
+    my_rsbuf[16] = my_indicator_data[0].RTC_time_buf[0];
+    my_rsbuf[17] = my_indicator_data[0].RTC_time_buf[1];
+    my_rsbuf[18] = my_indicator_data[0].RTC_time_buf[2];
+    my_rsbuf[19] = my_indicator_data[0].RTC_time_buf[3];
+    my_rsbuf[20] = my_indicator_data[0].RTC_time_buf[4];
+    my_rsbuf[21] = my_indicator_data[0].RTC_time_buf[5];
+    my_rsbuf[22] = my_indicator_data[0].RTC_time_buf[6];
 
 
 

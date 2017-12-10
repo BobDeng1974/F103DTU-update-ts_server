@@ -62,7 +62,7 @@
 #define LED6_ON								digitalLo(GPIOC,GPIO_PIN_1)
 
 #define SPEAKER_TOGGLE				digitalToggle(GPIOC,GPIO_PIN_2) //高电平有效，喇叭放音，低电平不放音
-#define SPEAKER_ON						digitalHi(GPIOC,GPIO_PIN_2) //开声音
+#define SPEAKER_ON						//digitalHi(GPIOC,GPIO_PIN_2) //开声音
 #define SPEAKER_OFF						digitalLo(GPIOC,GPIO_PIN_2)   //关声音
 
 #define WDI1_TOGGLE						digitalToggle(GPIOC,GPIO_PIN_5)  //喂狗3-5s，高低翻转
