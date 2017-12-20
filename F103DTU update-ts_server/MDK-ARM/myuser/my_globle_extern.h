@@ -24,7 +24,8 @@
 
 //GPRS test
 #define Use_GPRS_auto_re_ok  0 //GPRS模拟自动接收到OK帧，对话过程自动进行
-#define Use_indicatour_cyc_test_satus 0 //产生指示器的模拟数据
+#define Use_indicatour_cyc_test_satus 0//产生指示器的模拟数据
+#define Use_DTU_huanjing_jisuan 1  //对DTU的环境数据进行直接计算，保留小数点1位
 
 
 
@@ -85,7 +86,8 @@ struct indicator_alarm_class
     uint8_t data_type;  //01为周期，02为报警
     uint8_t count_time[2];  //全局同步值
     uint8_t xinhao_db; //信号强度
-    uint8_t TX_status;  //数据发送状态，发送完为0，没有发送为1
+    uint8_t TX_status_duanlu;  //短路数据发送状态，发送完为0，没有发送为1
+		uint8_t TX_status_jiedi;   //接地数据发送状态，发送完为0，没有发送为1
 
 };
 

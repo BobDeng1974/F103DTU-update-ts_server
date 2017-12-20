@@ -480,12 +480,12 @@ void my_fun_init_value_flash(void)
     my_temp8[1]=AT25_ReadByte(26);
     if(my_temp8[0]==0XAB||my_temp8[0]==0XCD)
     {
-        my_sys_init_flash=1;
+        //my_sys_init_flash=1;
     }
     else
     {
 
-        my_sys_init_flash=0;
+       // my_sys_init_flash=0;
     }
     //==========
     if(my_sys_init_flash==1)  //把默认参数写进缓冲区

@@ -145,6 +145,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name>/</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -181,9 +182,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>1226</LineNumber>
+          <LineNumber>1439</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134222890</Address>
+          <Address>134224638</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -192,76 +193,121 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>../Src/freertos.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\F103DTUTEST2\../Src/freertos.c\1226</Expression>
+          <Expression>\\F103DTUTEST2\../Src/freertos.c\1439</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>1445</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134224688</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../Src/freertos.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\F103DTUTEST2\../Src/freertos.c\1445</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>2103</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134261970</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\myuser\my_OS.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\F103DTUTEST2\myuser/my_OS.c\2103</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>1213</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134222820</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>../Src/freertos.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\F103DTUTEST2\../Src/freertos.c\1213</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>1440</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>../Src/freertos.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>1446</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>../Src/freertos.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>my_tim6_count,0x0A</ItemText>
+          <ItemText>DTU_ADDRESS,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>GPRS_Heartdata_error_count,0x0A</ItemText>
+          <ItemText>my_wave_record_E_buf</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>MY_ACT_Heart_DTU,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>my_indicator_data</ItemText>
-        </Ww>
-        <Ww>
-          <count>4</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>my_usart1_tx_buf1</ItemText>
-        </Ww>
-        <Ww>
-          <count>5</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>MY_ACT_Heart_DTU,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>6</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>MY_ACT_CYC_DTU,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>7</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>GPRS_Heartdata_error_count,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>8</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>NET_Server_status</ItemText>
-        </Ww>
-        <Ww>
-          <count>9</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>my_os_count1%13</ItemText>
+          <ItemText>my_indicator_record_data</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
           <count>0</count>
           <WinNumber>2</WinNumber>
-          <ItemText>MY_MCU_RsBuf</ItemText>
+          <ItemText>my_indicator_data</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>2</WinNumber>
-          <ItemText>MY_Bat_value,0x0A</ItemText>
+          <ItemText>pt_buf[ii]</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>2</WinNumber>
-          <ItemText>my_indicator_record_data[1].my_wave_record_I_buf[1]</ItemText>
+          <ItemText>my_os_count1,0x0A</ItemText>
         </Ww>
       </WatchWindow2>
       <MemoryWindow1>

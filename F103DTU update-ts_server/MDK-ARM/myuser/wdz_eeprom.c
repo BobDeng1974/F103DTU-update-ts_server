@@ -775,7 +775,7 @@ extern uint16_t MY_PORT;  //8080  16位数据
 extern uint16_t DTU_ADDRESS;
 //extern uint8_t AT_MESS_telphonenumber[100];
 //extern uint8_t AT_MESS_telphonenumber2[50];
-uint8_t FLASH_DTU=0;  //FLASH_DTU清除状态，为1表示清除DTU里面EEPROM地址，为0表示不清除EEPROM地址
+uint8_t FLASH_DTU=1;  //FLASH_DTU清除状态，为1表示清除DTU里面EEPROM地址，为0表示不清除EEPROM地址
 extern uint8_t my_sys_init_flash;
 void MY_Value_init(void)
 {
@@ -795,36 +795,27 @@ void MY_Value_init(void)
 
     //=============
 
-    my_buf[0]=AT25_ReadByte(EEPROM_sys_start_status);
-    my_buf[1]=AT25_ReadByte(EEPROM_sys_start_status+1);
-    my_temp_val16=my_buf[1];
-    my_temp_val16=(my_temp_val16<<8)+ my_buf[0];
-    if(my_temp_val16==0xCDAB)
-    {
-        FLASH_DTU=0;
-        my_sys_init_flash=0;
-    }
-    else
-    {
-        my_sys_init_flash=1;
-        FLASH_DTU=1;
-    }
+//    my_buf[0]=AT25_ReadByte(EEPROM_sys_start_status);
+//    my_buf[1]=AT25_ReadByte(EEPROM_sys_start_status+1);
+//    my_temp_val16=my_buf[1];
+//    my_temp_val16=(my_temp_val16<<8)+ my_buf[0];
+//    if(my_temp_val16==0xCDAB) //非第一次上电
+//    {
+//        //FLASH_DTU=0;  //非第一次上电
+//        //my_sys_init_flash=0;
+//			  //my_sys_init_flash=1; //第一次上电
+//        FLASH_DTU=1;
+//    }
+//    else
+//    {
+//        //my_sys_init_flash=1; //第一次上电
+//        FLASH_DTU=1;
+//    }
     //=================
 //清除内存数据部分，设置DTU为0X0000
-    if(FLASH_DTU==1)
-    {
+    
 
-        my_buf[0]=0xAB;
-        my_buf[1]=0xCD;
-
-        AT25_WriteByte(my_buf[0],EEPROM_sys_start_status);
-        AT25_WriteByte(my_buf[1],EEPROM_sys_start_status+1);
-    }
-
-//=====================
-
-
-    if(FLASH_DTU==1)
+    if(my_sys_init_flash==1)
     {
         my_status=2;  //第一次上电，写入默认值
     }

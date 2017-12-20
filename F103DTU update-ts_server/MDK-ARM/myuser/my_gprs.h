@@ -88,7 +88,7 @@ void WDZ_GPRS_101Transmit_OKdata(void); //发送肯定确认
 
 uint8_t WDZ_GPRS_101Transmit_Link_data(void);//发送建立链路数据
 //uint8_t WDZ_GPRS_101transmit_heartdata(void);  //发送心跳数据
-uint8_t WDZ_GPRS_101transmit_Cycle_data(void);  //发送周期数据
+//uint8_t WDZ_GPRS_101transmit_Cycle_data(void);  //发送周期数据
 uint8_t WDZ_GPRS_101Transmit_Alarm_Data(void);//主动发送报警数据
 
 uint8_t WDZ_GPRS_101transmit_Cycle_realtime_data(void);//主动发送周期实时数据，如果没有历史数据就发送
