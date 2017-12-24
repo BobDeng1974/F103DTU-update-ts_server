@@ -27,6 +27,9 @@
 #define Use_indicatour_cyc_test_satus 0//产生指示器的模拟数据
 #define Use_DTU_huanjing_jisuan 1  //对DTU的环境数据进行直接计算，保留小数点1位
 
+//报警模拟
+#define Use_gprs_ALarm_simulation_word 0 //1使用GPRS直接发送报警模拟数据，0为不使用
+
 
 
 
@@ -96,10 +99,12 @@ struct indicator_record_class
 {
     uint8_t my_wave_record_I_buf[1931];
 		uint8_t my_wave_record_E_buf[1931];
-    uint8_t my_wave_type; //1电流，2接地，0没有
+    //uint8_t my_wave_type; //1电流，2接地，0没有
     uint8_t my_wave_alam; //1周期，2报警，0没有
 		uint16_t my_count_write;
 		uint16_t my_count_read;
+		uint8_t my_wave_tx_status_I;  //录波数据发送状态，1表示两个波形还没有发送出去，0表示发送完成
+		uint8_t my_wave_tx_status_E;
 };
 
 struct my_ZSQ_change_vale  //指示器设置参数使用

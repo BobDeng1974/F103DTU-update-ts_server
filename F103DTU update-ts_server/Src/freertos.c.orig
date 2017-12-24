@@ -1428,20 +1428,29 @@ void Callback01(void const * argument)
 			//my_fun_display_ZSQ_data();
 			
 		}
-		
+
+/*
+模拟报警中断，短路和接地报警中断
+*/		
 		if(my_os_count1 % 37 == 0)
 		{
-			if(my_indicator_tx_index==0)
-			{	
-			
 			my_indicator_tx_index=2;
-			my_indicator_alarm_data[my_indicator_tx_index].duanlu_data=0X21;
-			my_indicator_alarm_data[my_indicator_tx_index].TX_status_duanlu=1;
-				
+			if(my_indicator_alarm_data[my_indicator_tx_index].duanlu_data==0X21)
+			{
+			my_indicator_alarm_data[my_indicator_tx_index].duanlu_data=0X41;
+			my_indicator_alarm_data[my_indicator_tx_index].jiedi_data=0X51;
+			my_indicator_alarm_data[my_indicator_tx_index].TX_status_jiedi=1;
 			}
+			else
+			{
+			my_indicator_alarm_data[my_indicator_tx_index].duanlu_data=0X21;
+			my_indicator_alarm_data[my_indicator_tx_index].jiedi_data=0X31;
+			my_indicator_alarm_data[my_indicator_tx_index].TX_status_duanlu=1;
+
+		 }
 			
 			
-			
+
 		}
 		
 

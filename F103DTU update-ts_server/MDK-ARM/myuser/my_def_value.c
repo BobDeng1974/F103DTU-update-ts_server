@@ -173,6 +173,7 @@ float MY_Speed_L_Gate=10.5;
 
 uint16_t MY_ACT_CYC_DTU=181;
 uint16_t MY_ACT_Heart_DTU=67;
+uint8_t my_act_cyc_dtu_delay=0;
 
 float  my_AD_value=0;
 float  my_AD_SUN_value=0;

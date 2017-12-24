@@ -271,7 +271,7 @@ INT8U CC1101RecPacket( INT8U *rxBuffer )
                 my_rssi_dbm = (my_rssi_dbm - 256) / 2 - 75;
             else
                 my_rssi_dbm = (my_rssi_dbm) / 2 - 75;
-
+						if(my_rssi_dbm<=-40)
             printf("*** RSSI=[%d] ***\n", my_rssi_dbm);
             return pktLen;
         }

@@ -137,6 +137,7 @@ extern RTC_HandleTypeDef hrtc;
 
 extern uint16_t MY_ACT_CYC_DTU;
 extern uint16_t MY_ACT_Heart_DTU;
+extern uint8_t my_act_cyc_dtu_delay;
 extern float  my_AD_value;
 extern float  my_AD_SUN_value;
 
