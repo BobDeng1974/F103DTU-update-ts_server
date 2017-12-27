@@ -835,6 +835,20 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
         my_indicator_record_data[my_indicator_index].my_wave_alam = 0x02; //报警
         my_indicator_record_data[my_indicator_index].my_wave_tx_status_I = 1;
         my_CC1101_record_wave_last_index = my_indicator_index; //记录获得最新的录波数据指示器编号
+			
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[0]=my_indicator_index+1;
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[1]=0;
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[2]=my_indicator_alarm_data[my_indicator_index].count_time[0];
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[3]=my_indicator_alarm_data[my_indicator_index].count_time[1];
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[4]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[0];
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[5]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[1];
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[6]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[2];
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[7]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[3];
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[8]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[4];
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[9]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[5];
+				my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[10]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[6];
+
+			
 
         for(ii = 0; ii < my_length; ii++)
             my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[ii + 11] = my_CC1101_COM_Fram_buf[9 + ii];
@@ -848,7 +862,20 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
         my_indicator_record_data[my_indicator_index].my_wave_alam = 0x02; //报警
         my_indicator_record_data[my_indicator_index].my_wave_tx_status_E = 1;
         my_CC1101_record_wave_last_index = my_indicator_index; //记录获得最新的录波数据指示器编号
+			
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[0]=my_indicator_index+1;
+			  my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[1]=0;
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[2]=my_indicator_alarm_data[my_indicator_index].count_time[0];
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[3]=my_indicator_alarm_data[my_indicator_index].count_time[1];
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[4]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[0];
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[5]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[1];
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[6]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[2];
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[7]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[3];
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[8]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[4];
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[9]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[5];
+				my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[10]=my_indicator_alarm_data[my_indicator_index].RTC_time_buf[6];
 
+				
 
         for(ii = 0; ii < my_length; ii++)
             my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[ii + 11] = my_CC1101_COM_Fram_buf[9 + ii];
@@ -919,8 +946,8 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
         printf("\n***960 data start*****\n");
         for(ii = 0; ii < 960; ii++)
         {
-            xx1 = (my_indicator_record_data[my_indicator_index].my_wave_record_buf[2 * ii]
-                   + ((my_indicator_record_data[my_indicator_index].my_wave_record_buf[2 * ii + 1]) << 8)) / 10.0;
+            xx1 = (my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[2 * ii]
+                   + ((my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[2 * ii + 1]) << 8)) / 10.0;
             printf("\n %.1f", xx1);
 
         }

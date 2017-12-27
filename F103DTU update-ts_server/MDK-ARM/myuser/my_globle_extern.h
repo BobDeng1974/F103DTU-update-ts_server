@@ -8,7 +8,7 @@
 
 
 //Debug_usart
-#define Debug_Uart_out_960WAVE_DATA_Status 0  //利用串口显示接收到的960数据
+#define Debug_Uart_out_960WAVE_DATA_Status 1  //利用串口显示接收到的960数据
 #define Debug_Uart_out_DC_AC_DATA_Status 1  //利用串口显示接收的直流和交流信号，包括遥信
 #define Debug_Uart_out_AC12T_DATA_Status 0  //利用串口发送12T数据
 
