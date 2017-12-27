@@ -941,17 +941,31 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
 #if Debug_Uart_out_960WAVE_DATA_Status==1
 
     double xx1 = 0;
-    if(temp_status == 0x43 || temp_status == 0x44 || temp_status == 0x53 || temp_status == 0x54) //周期AC_record
+    if(temp_status == 0x53) //周期AC_record
     {
-        printf("\n***960 data start*****\n");
+        printf("\n***960 data start—I*****\n");
+				printf("my_indicator_index=%d\n",my_indicator_index+1);
         for(ii = 0; ii < 960; ii++)
         {
-            xx1 = (my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[2 * ii]
-                   + ((my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[2 * ii + 1]) << 8)) / 10.0;
+            xx1 = (my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[2 * ii+11]
+                   + ((my_indicator_record_data[my_indicator_index].my_wave_record_I_buf[2 * ii + 1+11]) << 8)) / 10.0;
             printf("\n %.1f", xx1);
 
         }
-        printf("\n***960 data end*****\n");
+        printf("\n***960 data end---I*****\n");
+    }
+		 if(temp_status == 0x54 ) //周期AC_record
+    {
+        printf("\n***960 data start—E*****\n");
+				printf("my_indicator_index=%d\n",my_indicator_index+1);
+        for(ii = 0; ii < 960; ii++)
+        {
+            xx1 = (my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[2 * ii+11]
+                   + ((my_indicator_record_data[my_indicator_index].my_wave_record_E_buf[2 * ii + 1+11]) << 8)) / 10.0;
+            printf("\n %.1f", xx1);
+
+        }
+        printf("\n***960 data end---E*****\n");
     }
 #endif
 
