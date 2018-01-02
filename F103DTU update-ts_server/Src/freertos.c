@@ -928,6 +928,8 @@ void StartTask06(void const * argument)
         my_fun_CC1101_time_dialog_tx3(my_step, 0xF800, 0xF900, 1, my_fun_CC1101_test1);
         //===========心跳回复OK
         my_fun_CC1101_time_dialog_tx3(my_step, 0xE000, 0x00E0, 1, my_fun_CC1101_TX_OK);
+				//===参数设置
+				my_fun_CC1101_time_dialog_tx3(my_step, 0xE100, 0x00E1, 0, my_fun_CC1101_TX_config_parmeter);
 
         //======CC1101 周期====
         my_fun_CC1101_time_dialog_tx3(my_step, 0x0100, 0x0001, 0, my_fun_CC1101_test1);
@@ -989,7 +991,11 @@ void StartTask07(void const * argument)
         my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0xF800, 0xF900, 0, my_fun_write_update_data_to_FLASH);
 
         //=====ZSQ发送心跳
-        my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0xE000, 0x00E0, 0, my_fun_dialog_CC1101_RX_1);
+        my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0xE000, 0x00E0, 0, my_fun_dialog_CC1101_RX_0);
+				//=====参数设置
+				my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0xE100, 0x00E1, 0, my_fun_dialog_CC1101_RX_0);
+				my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0xE200, 0x0000, 1, my_fun_dialog_CC1101_RX_0);
+				
         //====CC1101 周期=====
         my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x0100, 0x0001, 0, my_fun_dialog_CC1101_RX_1);//遥信
         my_fun_CC1101_time_dialog_rx2(&myQueue03Handle, my_step, 0x0000, 0x4000, 0x0040, 0, my_fun_dialog_CC1101_RX_1);//遥测DC
@@ -1193,6 +1199,18 @@ void StartTask08(void const * argument)
                 my_step = 0X5400;
                 xQueueSend(myQueue04Handle, &my_step, 100);
             }
+						//参数设置
+						 else if( temp8 == 0x2F)
+            {
+                my_step = 0XE100;
+                xQueueSend(myQueue04Handle, &my_step, 100);
+            }
+						 else if( temp8 == 0x4F)
+            {
+                my_step = 0XE200;
+                xQueueSend(myQueue04Handle, &my_step, 100);
+            }
+						
 
             //===========
             temp8 = 0;

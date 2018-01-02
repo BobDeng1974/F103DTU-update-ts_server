@@ -416,7 +416,7 @@ void my_fun_CC1101_time_dialog_rx2(
         my_temp = ptfun();
         if(my_temp == 1)
         {
-            my_CC1101_all_step = my_now_step;	//当前状态??????
+            my_CC1101_all_step = my_now_step;	//当前状态
             xQueueSend(*QHL_send, &my_next_step, 100);	//标识下一个状态
         }
         else
@@ -3098,7 +3098,7 @@ void my_fun_display_ZSQ_data(void)
     uint16_t ii = 0;
     double yy[12] = {0};
     double xx2 = 0, xx3 = 0, xx4 = 0;
-    double xx1 = 0;
+    //double xx1 = 0;
     for(xx = 0; xx < 3; xx++) //显示三个指示器的数据信息
     {
         //短路和接地状态
@@ -3172,5 +3172,166 @@ void my_fun_display_ZSQ_data(void)
 
     }
 
+
+}
+
+
+
+
+//CC1101接收处理函数，接收后没有后续动作
+uint8_t my_fun_dialog_CC1101_RX_0(void)
+{
+    uint8_t temp_status = 0;
+    uint16_t my_length = 0;
+    uint8_t my_address = 0;
+    uint8_t my_indicator_index = 0;
+    uint8_t my_re = 1;
+
+    if(my_CC1101_COM_Fram_buf[0] == 0x10) //10帧，
+    {
+        //获得指令ID
+        temp_status = my_CC1101_COM_Fram_buf[1];
+        my_CC1101_receive_cmd_ID = temp_status;
+        //获得地址--发送源
+        my_address = my_CC1101_COM_Fram_buf[2]; //帧中的发送源地址
+        my_cc1101_dest_address = my_address; //修改CC1101的目的地址，为发送做准备使用
+
+//        my_address_dest = my_CC1101_COM_Fram_buf[3]; //发送目的地址
+#if Debug_uart_out_cc1101_rx_data_status==1
+        my_fun_display_buf_16(my_CC1101_COM_Fram_buf, 8, 0); //调试使用，显示接收到的数据8个字节
+#endif
+    }
+    else if (my_CC1101_COM_Fram_buf[0] == 0x68) //68长帧
+    {
+        //获得指令ID
+        temp_status = my_CC1101_COM_Fram_buf[6];
+        printf("===============control word==[%X]\n", temp_status);
+        my_CC1101_receive_cmd_ID = temp_status;
+
+        my_length = my_CC1101_COM_Fram_buf[2];
+        my_length = (my_length << 8) + my_CC1101_COM_Fram_buf[1] - 3; //获得长度
+
+        //获得地址
+        my_address = my_CC1101_COM_Fram_buf[7];
+        my_cc1101_dest_address = my_address; //修改CC1101的目的地址，为发送做准备使用
+
+#if Debug_uart_out_cc1101_rx_data_status==1
+        my_fun_display_buf_16(my_CC1101_COM_Fram_buf, 8, 0); //调试使用，显示接收到的数据8个字节
+#endif
+        my_fun_display_buf_16(my_CC1101_COM_Fram_buf, 8, 0); //@@@@调试使用，显示接收到的数据8个字节
+    }
+
+    //指示器地址判断
+    if(my_address == 0X01)
+    {
+        my_indicator_index = 0;
+    }
+    else if(my_address == 0X02)
+    {
+        my_indicator_index = 1;
+    }
+    else if(my_address == 0X03)
+    {
+        my_indicator_index = 2;
+    }
+    else
+        my_indicator_index = 0X10;
+    //帧数据类型判断
+    if(temp_status == 0x01)
+    {
+        my_indicator_data[my_indicator_index].data_type = 0x01; //周期
+    }
+    else if(temp_status == 0x02)
+    {
+        my_indicator_data[my_indicator_index].data_type = 0x02; //遥信
+
+    }
+    my_cc1101_tx_wait_time = 2000;
+//================
+	
+	if(my_CC1101_receive_cmd_ID==0X2F)
+	{
+		
+		printf("config prarameter is start==ZSQ[%d]!!!\n",my_address);
+	}
+	else if(my_CC1101_receive_cmd_ID==0X4F)
+	{
+		
+		printf("config prarameter is finish!==ZSQ[%d]!!\n",my_address);
+	}
+
+	//===============
+    return my_re;
+
+
+}
+
+
+/*
+发送CC1101参数设置指令
+*/
+
+void my_fun_CC1101_TX_config_parmeter(void)
+{
+    uint8_t *pt;
+    //uint16_t my_temp16 = my_tim6_count; //同步计数值
+    pt = my_cc1101_tx_buf;
+		uint16_t st_len=5;
+    pt[0] = 0x68;
+    pt[1] = st_len; 
+		pt[2] = (st_len>>8);
+		pt[3]=pt[1]; 
+		pt[4] =pt[2];
+		pt[5] =0x68;
+	
+		pt[6] =0x3F;
+    pt[7] = my_CC1101_chip_address; //代表DTU的CC1101地址，为0XFE,，0XFD为调试器的地址，01,02,03---为指示器地址
+    pt[8] = my_cc1101_dest_address; //目标地址
+    //信息内容,5长度的时候，没有需要设置的数据
+		if(st_len==5)
+		{
+		pt[9] =0X01;
+		pt[10] =0X02;
+		}
+    //===
+		//RTC设置部分
+		{
+			HAL_RTC_GetDate(&hrtc, &my_RTC_date, RTC_FORMAT_BIN);
+			HAL_RTC_GetTime(&hrtc, &my_RTC_time, RTC_FORMAT_BIN);
+			
+			st_len=st_len+9;
+			
+				pt[1] = st_len; 
+				pt[2] = (st_len>>8);
+				pt[3]=pt[1]; 
+				pt[4] =pt[2];
+		
+				pt[9] =0X01;
+				pt[10] =0X40;
+		
+		
+			pt[11] =my_tim6_count;
+			pt[12] =(my_tim6_count>>8);
+			
+			pt[13] =my_RTC_time.Seconds;
+			pt[14] =0;
+			pt[15] =my_RTC_time.Minutes;
+			pt[16] =my_RTC_time.Hours;
+			pt[17] =my_RTC_date.Date;
+			pt[18] =my_RTC_date.Month;
+			pt[19] =my_RTC_date.Year;
+			
+		}
+
+
+    pt[st_len+6] = my_fun_101check_generate(pt, 1);
+    pt[st_len+7] = 0x16;
+
+    CC1101SendPacket_add( pt, st_len+8,  ADDRESS_CHECK, my_cc1101_dest_address);
+    printf("after CC TX my_CC1101_all_step=[%XH]\n", my_CC1101_all_step);
+
+#if Debug_uart_out_cc1101_tx_data_status==1
+    my_fun_display_buf_16(pt, 8, 1); //测试使用
+#endif
 
 }

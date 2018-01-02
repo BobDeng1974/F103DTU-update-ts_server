@@ -15,7 +15,8 @@ uint8_t my_CC1101_chip_address = 0xFE; //芯片地址，0XFE位DTU地址，0XFD为调试器地
 uint8_t my_cc1101_dest_address = 0x01;
 uint16_t my_CC1101_sync_word = 0x0102; //CC1101同步字，默认为0x8799
 uint8_t my_CC1101_change_channer = my_CC1101_default_channer; //动态信道号
-
+//指示器地址构成：同步字低字节+同步字高字节+信道字节+信道内地址字节(01，02，03)
+//例如 01-02-03-01
 
 
 //10, 7, 5, 0, -5, -10, -15, -20, dbm output power, 0x12 == -30dbm
