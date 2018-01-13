@@ -54,3 +54,4 @@ f103dtutest2\my_cc1101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/sem
 f103dtutest2\my_cc1101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 f103dtutest2\my_cc1101.o: myuser\my_def_value.h
 f103dtutest2\my_cc1101.o: myuser\my_globle_extern.h
+f103dtutest2\my_cc1101.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

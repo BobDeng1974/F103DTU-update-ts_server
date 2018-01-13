@@ -2,6 +2,7 @@
 #include "cmsis_os.h"
 #include "my_def_value.h"
 #include "my_globle_extern.h"
+#include "math.h"
 
 
 
@@ -234,6 +235,7 @@ OUTPUT   : 1:received count, 0:no data
 ================================================================================
 */
 INT8U RS_buf_status[2] = {0}; //用来存储接收到的数据的RSSI和crc结果
+uint8_t my_RSSI_dbm_all=0;  //用来存储最终的CC1101的信号强度，最终的正整数结果
 
 INT8U CC1101RecPacket( INT8U *rxBuffer )
 {
@@ -268,10 +270,14 @@ INT8U CC1101RecPacket( INT8U *rxBuffer )
         {
             int my_rssi_dbm = 0;
             my_rssi_dbm = RS_buf_status[0]; //RSSI
+					
             if(my_rssi_dbm >= 128)
                 my_rssi_dbm = (my_rssi_dbm - 256) / 2 - 75;
             else
                 my_rssi_dbm = (my_rssi_dbm) / 2 - 75;
+						//存储信号强度
+						my_RSSI_dbm_all=(int)(fabs(my_rssi_dbm));
+
 						if(my_rssi_dbm<=-50)
             printf("*** RSSI=[%d] ***\n", my_rssi_dbm);
             return pktLen;

@@ -36,6 +36,7 @@ extern uint8_t my_system_restart_status;
 extern uint8_t USART1_my_frame[];
 extern uint8_t NET_Server_status;
 extern uint16_t my_cc1101_tx_wait_time;
+extern uint8_t my_RSSI_dbm_all;
 
 
 
@@ -445,6 +446,7 @@ void my_fun_CC1101_time_dialog_rx2(
 */
 uint8_t my_GPRS_heart_count = 0;
 extern uint16_t DTU_ADDRESS;
+uint8_t my_cc1101_error_count=0;
 
 
 
@@ -466,15 +468,29 @@ void my_fun_CC1101_init_resume(void)
     if(my_status == 0x01 && my_rx_count > 0)
     {
         printf("------ CC1101 status=[%XH] RXBUF=%d \n", my_status, my_rx_count);
+				my_cc1101_error_count++;
+				if(my_cc1101_error_count>=300)
+					HAL_NVIC_SystemReset();
+				
         my_fun_CC1101_init_reum();
     }
     if(my_status != 0x01 && my_status != 0x0D &&  my_status != 0x13  ) //0x11,接收溢出,//0X01空闲，0X0D接收，0X13发送
     {
         printf("--error CC_status=[%XH] \n", my_status);
+				my_cc1101_error_count++;
+				if(my_cc1101_error_count>=300)
+					HAL_NVIC_SystemReset();
         my_fun_CC1101_init_reum();
         printf("--inint after CC_status=[%XH] \n", my_status);
+				
+				if(my_status==0xff)
+					HAL_NVIC_SystemReset();
 
     }
+		else
+		{
+			my_cc1101_error_count=0;
+		}
 }
 
 /*
@@ -674,7 +690,10 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
         my_indicator_data[my_indicator_index].RTC_time_buf[4] = my_RTC_date.Date; //RTC时间
         my_indicator_data[my_indicator_index].RTC_time_buf[5] = my_RTC_date.Month; //RTC时间
         my_indicator_data[my_indicator_index].RTC_time_buf[6] = my_RTC_date.Year; //RTC时间
-
+			
+				//信号强度
+				my_indicator_data[my_indicator_index].xinhao_db=my_RSSI_dbm_all;
+			
         //
 
         my_gprs_count_time = my_indicator_data[my_indicator_index].count_time[1];
@@ -2039,7 +2058,7 @@ void  my_fun_GPRS_TX_xinhaoqiangdu(void)  //
 
     my_usart1_tx_buf1[15] = 0x61;
     my_usart1_tx_buf1[16]	= 0x50;
-    my_usart1_tx_buf1[17] = my_indicator_data[0].xinhao_db;
+    my_usart1_tx_buf1[17] = my_indicator_data[0].xinhao_db; //CC1101信号强度
     my_usart1_tx_buf1[18] = my_indicator_data[1].xinhao_db;;
     my_usart1_tx_buf1[19] = my_indicator_data[2].xinhao_db;;
 
@@ -2512,7 +2531,7 @@ uint8_t my_fun_GPRS_RX_test1(void) //此函数为结束函数，收到OK帧后，结束对话过程
     }
     else if(my_GPRS_all_step == 0X0041)
     {
-        printf("GPRS==GPRS dbp!!\r\n");
+        printf("GPRS==GPRS dbp==%d-ZSQ=[%d]-[%d]-[%d]!!\r\n",MY_AT_CSQ_Value,my_indicator_data[0].xinhao_db,my_indicator_data[1].xinhao_db,my_indicator_data[2].xinhao_db);
     }
     else if(my_GPRS_all_step == 0X0031)
     {

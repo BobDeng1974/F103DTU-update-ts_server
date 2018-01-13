@@ -1543,7 +1543,7 @@ void my_gprs_generate_101single_data(uint8_t temp, uint8_t *my_rsbuf)
         wdz_GPRS_101check_generate(my_rsbuf); //生成校验字节
     }
 
-
+		
 }
 
 
@@ -4635,9 +4635,12 @@ void my_gprs_generate_101yaoce2_data(uint8_t *my_rsbuf)
         my_rsbuf[16 + 8 * jj] = my_indicator_data[jj].DC_data_buf[4 * 2]; //5线上电压
         my_rsbuf[17 + 8 * jj] = my_indicator_data[jj].DC_data_buf[4 * 2 + 1];
 
-
-        my_rsbuf[18 + 8 * jj] = my_indicator_data[jj].DC_data_buf[3 * 2]; //4干电池
-        my_rsbuf[19 + 8 * jj] = my_indicator_data[jj].DC_data_buf[3 * 2 + 1];
+				//干电池数据转换成，指示器对应的TIMER
+        //my_rsbuf[18 + 8 * jj] = my_indicator_data[jj].DC_data_buf[3 * 2]; //4干电池
+        //my_rsbuf[19 + 8 * jj] = my_indicator_data[jj].DC_data_buf[3 * 2 + 1];
+			
+					my_rsbuf[18 + 8 * jj] = my_indicator_data[jj].count_time[0]; //4干电池														
+					my_rsbuf[19 + 8 * jj] = my_indicator_data[jj].count_time[1];
 
 
         my_rsbuf[20 + 8 * jj] = my_indicator_data[jj].AC_data_buf[4]; //半波电流值
