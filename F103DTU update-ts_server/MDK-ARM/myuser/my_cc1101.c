@@ -279,7 +279,7 @@ INT8U CC1101RecPacket( INT8U *rxBuffer )
 						my_RSSI_dbm_all=(int)(fabs(my_rssi_dbm));
 
 						if(my_rssi_dbm<=-50)
-            printf("*** RSSI=[%d] ***\n", my_rssi_dbm);
+            printf("*** RSSI=[%d] ***\n", my_rssi_dbm); //@@@这个值上线的时候修改为-70，否则不断的重复输出
             return pktLen;
         }
         else
