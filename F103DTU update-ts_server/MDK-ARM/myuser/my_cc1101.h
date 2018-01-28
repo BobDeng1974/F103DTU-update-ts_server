@@ -86,7 +86,7 @@ int my_101frame_analyse(uint8_t port_number, uint8_t length_long_status,uint8_t 
 void my_fun_CC1101_send_long_data(INT8U *txbuffer, uint16_t size, TX_DATA_MODE mode, INT8U address);
 
 
-void my_fun_display_fram_16(uint8_t portnumber);
+void my_fun_display_fram_16(uint8_t portnumber,uint8_t dis_length);
 void my_fun_display_buf_16(uint8_t *pt, uint16_t size,uint8_t TX_status);
 
 void my_fun_CC1101_init_reum(void);

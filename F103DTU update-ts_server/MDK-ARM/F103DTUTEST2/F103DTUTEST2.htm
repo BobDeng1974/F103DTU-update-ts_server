@@ -3,7 +3,7 @@
 <title>Static Call Graph - [F103DTUTEST2\F103DTUTEST2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image F103DTUTEST2\F103DTUTEST2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Sat Jan 13 17:53:12 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Sun Jan 28 12:38:53 2018
 <BR><P>
 <H3>Maximum Stack Usage =       1032 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -519,6 +519,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MY_Value_init
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_dialog_CC1101_RX_1
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_GPRS_TX_CYC3
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_GPRS_RX_change_parameter
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback01
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
@@ -539,6 +540,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101RecPacket
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_dialog_CC1101_RX_1
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_GPRS_TX_CYC3
 </UL>
 
 <P><STRONG><a name="[8f]"></a>__aeabi_ui2d</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, dfltui.o(.text))
@@ -2582,12 +2584,14 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(i.StartTask04)
 </UL>
-<P><STRONG><a name="[52]"></a>my_fun_GPRS_TX_CYC3</STRONG> (Thumb, 436 bytes, Stack size 8 bytes, my_os.o(i.my_fun_GPRS_TX_CYC3))
-<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = my_fun_GPRS_TX_CYC3 &rArr; my_at_senddata &rArr; my_at_com &rArr; USART_printf &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
+<P><STRONG><a name="[52]"></a>my_fun_GPRS_TX_CYC3</STRONG> (Thumb, 548 bytes, Stack size 40 bytes, my_os.o(i.my_fun_GPRS_TX_CYC3))
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = my_fun_GPRS_TX_CYC3 &rArr; my_at_senddata &rArr; my_at_com &rArr; USART_printf &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_at_senddata
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdz_GPRS_101check_generate
 <LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_gprs_generate_101analog_data
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_display_buf_16
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
@@ -2829,12 +2833,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(i.StartTask07)
 </UL>
-<P><STRONG><a name="[6c]"></a>my_fun_dialog_CC1101_RX_1</STRONG> (Thumb, 2544 bytes, Stack size 120 bytes, my_os.o(i.my_fun_dialog_CC1101_RX_1))
+<P><STRONG><a name="[6c]"></a>my_fun_dialog_CC1101_RX_1</STRONG> (Thumb, 2560 bytes, Stack size 120 bytes, my_os.o(i.my_fun_dialog_CC1101_RX_1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 228<LI>Call Chain = my_fun_dialog_CC1101_RX_1 &rArr; HAL_RTC_GetDate &rArr; HAL_RTC_GetTime &rArr; RTC_DateUpdate &rArr; RTC_WeekDayNum
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_give_Queue
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_display_fram_16
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_display_buf_16
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RTC_GetTime
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RTC_GetDate
@@ -2876,12 +2881,13 @@ Global Symbols
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_GPRS_TX_ALarm_data
 </UL>
 
-<P><STRONG><a name="[149]"></a>my_fun_display_fram_16</STRONG> (Thumb, 190 bytes, Stack size 24 bytes, my_cc1101.o(i.my_fun_display_fram_16))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = my_fun_display_fram_16 &rArr; __2printf
+<P><STRONG><a name="[149]"></a>my_fun_display_fram_16</STRONG> (Thumb, 192 bytes, Stack size 32 bytes, my_cc1101.o(i.my_fun_display_fram_16))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = my_fun_display_fram_16 &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask03
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_dialog_CC1101_RX_1
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask03
 </UL>
 
 <P><STRONG><a name="[c6]"></a>my_fun_give_Queue</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, my_os.o(i.my_fun_give_Queue))

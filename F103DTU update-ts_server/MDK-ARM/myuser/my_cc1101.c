@@ -278,7 +278,7 @@ INT8U CC1101RecPacket( INT8U *rxBuffer )
 						//存储信号强度
 						my_RSSI_dbm_all=(int)(fabs(my_rssi_dbm));
 
-						if(my_rssi_dbm<=-50)
+						if(my_rssi_dbm<=-70)
             printf("*** RSSI=[%d] ***\n", my_rssi_dbm); //@@@这个值上线的时候修改为-70，否则不断的重复输出
             return pktLen;
         }
@@ -1560,7 +1560,7 @@ xx0:
 }
 
 //测试使用，16进制显示收到的的数据
-void my_fun_display_fram_16(uint8_t portnumber)
+void my_fun_display_fram_16(uint8_t portnumber,uint8_t dis_length)
 {
     uint8_t *pt_buf = NULL;
     uint16_t my_length = 0;
@@ -1613,7 +1613,7 @@ void my_fun_display_fram_16(uint8_t portnumber)
     printf("%s", ptchar);
 
     if(my_length>8)
-        my_length=8;   //控制显示字符串的长度
+        my_length=dis_length;   //控制显示字符串的长度
 
     for(ii = 0; ii < my_length; ii++)
     {

@@ -789,6 +789,13 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
         for(ii = 0; ii < my_length; ii++)
         {
             my_indicator_data[my_indicator_index].AC_data_buf[ii] = my_CC1101_COM_Fram_buf[9 + ii];
+					
+						if(my_indicator_data[my_indicator_index].AC_data_buf[0]==0X0C)
+						{
+							printf("======ZSQ[%d]====1.2\n",my_indicator_index);
+							
+							my_fun_display_fram_16(4,22);
+						}
 
         }
         //报警部分
@@ -1361,7 +1368,10 @@ void  my_fun_GPRS_TX_CYC3(void)  //周期发送遥测
         my_usart1_tx_buf1[24 + 12 * jj] = my_indicator_data[jj].DC_data_buf[6 * 2 + 1];
         my_usart1_tx_buf1[25 + 12 * jj] = 0x00;
 
-
+				printf("ZSQ[%d]-A=%.1f,E=%.1f\n",jj+1,
+			(my_indicator_data[jj].AC_data_buf[1]*256+my_indicator_data[jj].AC_data_buf[0])/10.0,
+			(my_indicator_data[jj].AC_data_buf[3]*256+my_indicator_data[jj].AC_data_buf[2])/10.0
+			);
     }
     //系统重启，发送特殊数据处理  0XFB，指示器重启为0X11
     if(my_system_restart_status == 1)
@@ -1397,6 +1407,8 @@ void  my_fun_GPRS_TX_CYC3(void)  //周期发送遥测
 
     printf("my_GPRS send CYC data-[%XH]:", my_GPRS_all_step);
     my_fun_display_buf_16(my_usart1_tx_buf1, 10, 1);
+		
+
 
 #if Use_GPRS_auto_re_ok==1
     uint8_t my_step = 0X00B3;

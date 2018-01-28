@@ -333,7 +333,7 @@ void StartTask03(void const * argument)
             my_101frame_analyse(1, 0, my_GPRS_CRC_check); //第2个参数，0为单地址
             if(USART1_FRAME_status > 0) //分析出来数据
             {
-                my_fun_display_fram_16(1);  //测试使用，显示接收到的数据
+                my_fun_display_fram_16(1,8);  //测试使用，显示接收到的数据
                 USART1_FRAME_status = 0;
 
                 if(USART1_my_frame[0] == 0x10)
@@ -1070,7 +1070,7 @@ void StartTask08(void const * argument)
             if(my_CC1101_Frame_status > 0) //分析出来数据
             {
 #if Debug_uart_out_cc1101_rx_data_status==1
-                my_fun_display_fram_16(4);  //测试使用，显示接收到的数据
+                my_fun_display_fram_16(4,8);  //测试使用，显示接收到的数据
 #endif
 
                 my_CC1101_Frame_status = 0;
