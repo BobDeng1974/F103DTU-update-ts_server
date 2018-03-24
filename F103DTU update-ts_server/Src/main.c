@@ -95,8 +95,14 @@ extern uint16_t my_tim6_count;
 uint8_t my_usart1_tx_buf1[270]= {0x10,0x49,0x01,0x02,0x13,0x16};
 uint8_t my_system_restart_status=0;  //系统重启标识，1为重启，0为正常
 
+uint16_t DTU_ADDRESS=65109;  //DTU地址号****
 
-extern uint16_t DTU_ADDRESS; //DTU的全局地址，2个字节 uint16_t MY_DTU_add
+extern uint16_t my_CC1101_sync_word;
+extern uint8_t my_CC1101_change_channer;
+extern uint8_t my_CC1101_chip_address;
+
+
+//extern uint16_t DTU_ADDRESS; //DTU的全局地址，2个字节 uint16_t MY_DTU_add
 extern uint8_t my_sys_init_flash;
 
 RTC_DateTypeDef my_RTC_date;
@@ -165,7 +171,8 @@ int main(void)
     //=======
     //系统版本号
 		printf("\n===========\n");
-		printf("%s",my_sys_verson);
+		printf("%s\n",my_sys_verson);
+		printf("DTU=%d, syns_word=%X,CH=%X,ADD=%X ",DTU_ADDRESS,my_CC1101_sync_word,my_CC1101_change_channer,my_CC1101_chip_address);
 		printf("===========\n");
     
 

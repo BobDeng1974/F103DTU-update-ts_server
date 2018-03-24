@@ -110,6 +110,9 @@ extern struct indicator_record_class my_indicator_record_data[];
 extern uint8_t my_indicator_tx_index;
 extern uint16_t my_gprs_count_time;
 
+extern struct indicator_class my_indicator_data[];
+
+
 uint16_t my_os_count1 = 0;
 uint8_t my_cc_count = 0;
 uint8_t my_gprs_TX_status = 0; //1表示gprs正在进行发送环节，0表示结束
@@ -1483,7 +1486,7 @@ void Callback01(void const * argument)
 
 
     }
-    if(my_os_count1 % 7 == 0 && my_CC1101_all_step == 0 && my_GPRS_all_step == 0) //RTC
+    if(my_os_count1 % 13 == 0 && my_CC1101_all_step == 0 && my_GPRS_all_step == 0) //RTC
     {
         if((my_CC1101_all_step >= 0X5000 && my_CC1101_all_step <= 0X5400) ||
                 (my_CC1101_all_step >= 0X0050 && my_CC1101_all_step <= 0X0054)  ||
@@ -1493,8 +1496,10 @@ void Callback01(void const * argument)
 
         HAL_RTC_GetDate(&hrtc, &my_RTC_date, RTC_FORMAT_BIN);
         HAL_RTC_GetTime(&hrtc, &my_RTC_time, RTC_FORMAT_BIN);
-        printf("===RTC= %d/%d/%d %d:%d:%d====\n",
-               my_RTC_date.Year, my_RTC_date.Month, my_RTC_date.Date, my_RTC_time.Hours, my_RTC_time.Minutes, my_RTC_time.Seconds);
+        printf("@@RTC= %d/%d/%d %d:%d:%d== RSSI=[%d]-[%d]-[%d]\n",
+               my_RTC_date.Year, my_RTC_date.Month, my_RTC_date.Date, my_RTC_time.Hours, my_RTC_time.Minutes, my_RTC_time.Seconds,
+							 my_indicator_data[0].xinhao_db,my_indicator_data[1].xinhao_db,my_indicator_data[2].xinhao_db			
+				);
 
     }
     //====从CPU==END===

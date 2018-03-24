@@ -709,8 +709,7 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
         if(temp_status == 0x02)
         {
 
-            my_indicator_alarm_data[my_indicator_index].duanlu_data = my_CC1101_COM_Fram_buf[9]; //短路
-            my_indicator_alarm_data[my_indicator_index].jiedi_data =	my_CC1101_COM_Fram_buf[11]; //接地
+           
             //timer计数值
 
             my_indicator_alarm_data[my_indicator_index].count_time[0] = my_CC1101_COM_Fram_buf[10]; //计数值低字节
@@ -724,17 +723,28 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
             my_indicator_alarm_data[my_indicator_index].RTC_time_buf[4] = my_RTC_date.Date; //RTC时间
             my_indicator_alarm_data[my_indicator_index].RTC_time_buf[5] = my_RTC_date.Month; //RTC时间
             my_indicator_alarm_data[my_indicator_index].RTC_time_buf[6] = my_RTC_date.Year; //RTC时间
-
+					
+					
+					
+						
             //报警数据发送状态记录
-            if(my_indicator_alarm_data[my_indicator_index].duanlu_data != 0)
+            if(my_indicator_alarm_data[my_indicator_index].duanlu_data != 0 && my_CC1101_COM_Fram_buf[9]==0)
                 my_indicator_alarm_data[my_indicator_index].TX_status_duanlu = 0x01; //表示有报警数据产生，还没有发送。如果发送完了，把这个字节清零
+						else if( my_CC1101_COM_Fram_buf[9]!=0)
+								my_indicator_alarm_data[my_indicator_index].TX_status_duanlu = 0x01; 
             else
                 my_indicator_alarm_data[my_indicator_index].TX_status_duanlu = 0x00;
 
-            if(my_indicator_alarm_data[my_indicator_index].jiedi_data != 0)
+            if(my_indicator_alarm_data[my_indicator_index].jiedi_data != 0 && my_CC1101_COM_Fram_buf[11]==0)
                 my_indicator_alarm_data[my_indicator_index].TX_status_jiedi = 0x01;
+						else if( my_CC1101_COM_Fram_buf[11]!=0)
+								my_indicator_alarm_data[my_indicator_index].TX_status_jiedi = 0x01;
             else
                 my_indicator_alarm_data[my_indicator_index].TX_status_jiedi = 0x00;
+						//更新报警状态
+						my_indicator_alarm_data[my_indicator_index].duanlu_data = my_CC1101_COM_Fram_buf[9]; //短路
+            my_indicator_alarm_data[my_indicator_index].jiedi_data =	my_CC1101_COM_Fram_buf[11]; //接地
+							
 
         }
 
@@ -920,7 +930,7 @@ uint8_t my_fun_dialog_CC1101_RX_1(void)
         printf("========START DC2============\n");
         printf("---ZSQ=[%d]--TIME=[%d]-[%d]-[%d]--local time=[%d]\n", my_address, my_ZSQ_time_count[0], my_ZSQ_time_count[1], my_ZSQ_time_count[2], my_tim6_count);
         printf("ALARM:duanlu=[%XH],jiedi=[%XH]\n", my_indicator_data[my_indicator_index].duanlu_data, my_indicator_data[my_indicator_index].jiedi_data);
-
+				printf("RSSI=%d\n",my_indicator_data[my_indicator_index].xinhao_db);
         //直流量，7个
         for(ii = 0; ii < 7; ii++)
         {
@@ -3214,7 +3224,7 @@ uint8_t my_fun_dialog_CC1101_RX_0(void)
 {
     uint8_t temp_status = 0;
     uint16_t my_length = 0;
-    uint8_t my_address = 0;
+    uint8_t my_address = 0; //
     uint8_t my_indicator_index = 0;
     uint8_t my_re = 1;
 
@@ -3226,6 +3236,9 @@ uint8_t my_fun_dialog_CC1101_RX_0(void)
         //获得地址--发送源
         my_address = my_CC1101_COM_Fram_buf[2]; //帧中的发送源地址
         my_cc1101_dest_address = my_address; //修改CC1101的目的地址，为发送做准备使用
+			
+			  //printf("@@@@@ ID=%d, RSSI=%d \n",my_address,my_RSSI_dbm_all) ; 
+				my_indicator_data[my_address-1].xinhao_db=my_RSSI_dbm_all; //存储信号强度
 
 //        my_address_dest = my_CC1101_COM_Fram_buf[3]; //发送目的地址
 #if Debug_uart_out_cc1101_rx_data_status==1

@@ -3,9 +3,9 @@
 <title>Static Call Graph - [F103DTUTEST2\F103DTUTEST2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image F103DTUTEST2\F103DTUTEST2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Sun Jan 28 12:38:53 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Thu Mar 22 11:13:32 2018
 <BR><P>
-<H3>Maximum Stack Usage =       1032 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =       1040 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; my_init_m35 &rArr; AT_GET_CSQ &rArr; AT_Get_AT_Answer_string &rArr; my_at_com &rArr; USART_printf &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 <P>
@@ -862,7 +862,7 @@ Global Symbols
 <LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_CC1101_init_resume
 </UL>
 
-<P><STRONG><a name="[bd]"></a>CC1101RecPacket</STRONG> (Thumb, 228 bytes, Stack size 24 bytes, my_cc1101.o(i.CC1101RecPacket))
+<P><STRONG><a name="[bd]"></a>CC1101RecPacket</STRONG> (Thumb, 250 bytes, Stack size 24 bytes, my_cc1101.o(i.CC1101RecPacket))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = CC1101RecPacket &rArr; CC1101ReadMultiReg &rArr; SPI_ExchangeByte &rArr; HAL_SPI_TransmitReceive &rArr; SPI_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadReg
@@ -1020,7 +1020,7 @@ Global Symbols
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC1101ReadMultiReg
 </UL>
 
-<P><STRONG><a name="[72]"></a>Callback01</STRONG> (Thumb, 2246 bytes, Stack size 104 bytes, freertos.o(i.Callback01))
+<P><STRONG><a name="[72]"></a>Callback01</STRONG> (Thumb, 2274 bytes, Stack size 104 bytes, freertos.o(i.Callback01))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = Callback01 &rArr; my_fun_M35_resume_init &rArr; xEventGroupSetBitsFromISR &rArr; xTimerPendFunctionCallFromISR &rArr; xQueueGenericSendFromISR &rArr; prvCopyDataToQueue &rArr; xTaskPriorityDisinherit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_UART4_printf
@@ -2237,8 +2237,8 @@ Global Symbols
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_printf
 </UL>
 
-<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 902 bytes, Stack size 200 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 1032<LI>Call Chain = main &rArr; my_init_m35 &rArr; AT_GET_CSQ &rArr; AT_Get_AT_Answer_string &rArr; my_at_com &rArr; USART_printf &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 926 bytes, Stack size 208 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 1040<LI>Call Chain = main &rArr; my_init_m35 &rArr; AT_GET_CSQ &rArr; AT_Get_AT_Answer_string &rArr; my_at_com &rArr; USART_printf &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelStart
 <LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_speaker_short_cycle_voice
@@ -2825,7 +2825,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Callback01
 </UL>
 
-<P><STRONG><a name="[6b]"></a>my_fun_dialog_CC1101_RX_0</STRONG> (Thumb, 214 bytes, Stack size 24 bytes, my_os.o(i.my_fun_dialog_CC1101_RX_0))
+<P><STRONG><a name="[6b]"></a>my_fun_dialog_CC1101_RX_0</STRONG> (Thumb, 234 bytes, Stack size 24 bytes, my_os.o(i.my_fun_dialog_CC1101_RX_0))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = my_fun_dialog_CC1101_RX_0 &rArr; my_fun_display_buf_16 &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_display_buf_16
@@ -2833,7 +2833,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(i.StartTask07)
 </UL>
-<P><STRONG><a name="[6c]"></a>my_fun_dialog_CC1101_RX_1</STRONG> (Thumb, 2560 bytes, Stack size 120 bytes, my_os.o(i.my_fun_dialog_CC1101_RX_1))
+<P><STRONG><a name="[6c]"></a>my_fun_dialog_CC1101_RX_1</STRONG> (Thumb, 2642 bytes, Stack size 120 bytes, my_os.o(i.my_fun_dialog_CC1101_RX_1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 228<LI>Call Chain = my_fun_dialog_CC1101_RX_1 &rArr; HAL_RTC_GetDate &rArr; HAL_RTC_GetTime &rArr; RTC_DateUpdate &rArr; RTC_WeekDayNum
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_fun_give_Queue

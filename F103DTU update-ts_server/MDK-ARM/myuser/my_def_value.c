@@ -3,7 +3,7 @@
 
 
 
-uint16_t DTU_ADDRESS=65106;  //DTU地址号****
+
 uint8_t my_sys_init_flash=1  ;  //1系统上电清空参数eeprom取默认值，0为不
 
 
